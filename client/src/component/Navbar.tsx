@@ -6,19 +6,21 @@ const Navbar: React.FC = () => {
 
   return (
     <div className="flex justify-between items-center p-4 bg-dark-purple text-white">
+      {/* logo */}
       <div className="flex items-center">
         <div className="flex gap-x-4 items-center">
           <img
             src="./src/assets/logo.svg"
             alt="logo"
-            className="cursor-pointer w-12 h-12"
+            className="cursor-pointer w-10 h-12"
           />
-          <h1 className="font-medium text-xl hidden md:flex">
+          <h1 className="font-bold text-2xl hidden md:flex">
             ALNAHDAH
           </h1>
         </div>
       </div>
 
+      {/* search bar */}
       <div className="relative">
         <input
           type="text"
@@ -34,6 +36,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
+      {/* user */}
       <div className="flex items-center">
         <span className="mr-4">{name}</span>
         <div className="rounded-full overflow-hidden">

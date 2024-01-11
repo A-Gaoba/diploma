@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Menus from '../data/index';
 import { Link } from 'react-router-dom';
+import Home from '../page/students/Home';
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
@@ -17,22 +18,9 @@ const Sidebar = () => {
         <img
           src="./src/assets/control.svg"
           alt="image for control"
-          className={`absolute cursor-pointer -right-3 top-9 w-7 bg-dark-purple border-dark-purple border-2 rounded-full  ${!open && 'rotate-180'}`}
+          className={`absolute cursor-pointer -right-3 top-11 w-7 bg-dark-purple border-dark-purple border-2 rounded-full  ${!open && 'rotate-180'}`}
           onClick={toggleSidebar}
         />
-        {/* <div className="flex gap-x-4 items-center">
-          <img
-            src="./src/assets/logo.png"
-            alt="logo"
-            className={`cursor-pointer duration-500 ${open && 'rotate-[360deg]'}
-              `}
-          />
-          <h1
-            className={`text-white origin-left font-medium text-xl duration-200 ${!open && 'scale-0'}`}
-          >
-            Alnahdah
-          </h1>
-        </div> */}
         <ul className="pt-6">
           {Menus.map((menu, index) => (
             <Link to={menu.path} key={index}>
@@ -41,13 +29,18 @@ const Sidebar = () => {
               ${menu.gap ? 'mt-9' : 'mt-2'} ${index === 0 && 'bg-light-white'}
                   `}
               >
-                <img src={`./src/assets/${menu.src}.svg`} alt="image of the element" className=' w-7 h-6' />
-                <span className={`${!open && 'hidden'} origin-left duration-200`}>{menu.title}</span>
+                <img src={`./src/assets/${menu.src}.svg`} alt="image of the element" className=' w-6 h-4' />
+                <span className={`${!open && 'hidden'} origin-left duration-200 py-2`}>{menu.title}</span>
               </li>
             </Link>
           ))}
         </ul>
       </div>
+
+      <div>
+        <Home />
+      </div>
+      
     </div>
   );
 };
