@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Menus from "../../data/index";
 import { Link } from "react-router-dom";
-import Home from "../../page/students/Home";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
