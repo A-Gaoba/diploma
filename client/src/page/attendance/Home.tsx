@@ -2,9 +2,7 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div>
-      calses
-    </div>
+    <div>attendance</div>
   )
 }
 
