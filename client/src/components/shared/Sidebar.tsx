@@ -5,17 +5,23 @@ import Menus from "../../data/index";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const [isSubMenuOpen, setIsSubMenuOpen] = useState(true);
+  const [openSubMenuIndexes, setOpenSubMenuIndexes] = useState([]);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
 
-  const toggleSubMenu = () => {
-    setIsSubMenuOpen(!isSubMenuOpen);
+  const toggleSubMenu = (index) => {
+    setOpenSubMenuIndexes((prevIndexes) =>
+      prevIndexes.includes(index)
+        ? prevIndexes.filter((i) => i !== index)
+        : [...prevIndexes, index]
+    );
   };
 
-  const renderSubMenu = (subMenuItems) => (
+  const isSubMenuOpen = (index) => openSubMenuIndexes.includes(index);
+
+  const renderSubMenu = (subMenuItems, parentIndex) => (
     <ul>
       {subMenuItems.map((item, index) => (
         <Link to={item.path} key={index}>
@@ -25,9 +31,7 @@ const Sidebar = () => {
               alt="image of the element"
               className="w-5 h-5"
             />
-            <span
-              className={`${!isOpen && "hidden"} origin-left duration-200 py-2`}
-            >
+            <span className={`${!isOpen && "hidden"} origin-left duration-200 py-2`}>
               {item.title}
             </span>
           </li>
@@ -35,6 +39,7 @@ const Sidebar = () => {
       ))}
     </ul>
   );
+
 
   return (
     <div className="flex">
@@ -73,19 +78,17 @@ const Sidebar = () => {
                   alt="image of the element"
                   className="w-6 h-6"
                 />
-                <span
-                  className={`${!isOpen && "hidden"} origin-left duration-200 py-2`}
-                >
+                <span className={`${!isOpen && "hidden"} origin-left duration-200 py-2`}>
                   {menu.title}
                 </span>
                 {menu.submenu && isOpen && (
                   <FaAngleDown
-                    className={`ml-16 ${isSubMenuOpen && "rotate-180"}`}
-                    onClick={toggleSubMenu}
+                    className={`ml-16 ${isSubMenuOpen(index) && "rotate-180"}`}
+                    onClick={() => toggleSubMenu(index)}
                   />
                 )}
               </li>
-              {menu.submenu && isSubMenuOpen && renderSubMenu(menu.subMenuItem)}
+              {menu.submenu && isSubMenuOpen(index) && renderSubMenu(menu.subMenuItem, index)}
             </Link>
           ))}
         </ul>
