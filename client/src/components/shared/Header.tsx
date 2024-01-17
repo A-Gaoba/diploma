@@ -12,10 +12,11 @@ export default function Header() {
   const navigate = useNavigate();
   const name = "Abdulrahman";
   const firstLetter = name ? name.charAt(0).toUpperCase() : "";
+
   return (
     <div className="bg-white h-16 px-4 flex items-center border-b border-gray-200 justify-between">
       {/* input */}
-      <div className="relative">
+      <div className="relative flex-shrink w-full md:w-[24rem]">
         <HiOutlineSearch
           fontSize={20}
           className="text-gray-400 absolute top-1/2 left-3 -translate-y-1/2"
@@ -23,7 +24,7 @@ export default function Header() {
         <input
           type="text"
           placeholder="Search..."
-          className="text-sm focus:outline-none active:outline-none border border-gray-300 md:w-[24rem] h-10 pl-11 pr-4 rounded-sm"
+          className="text-sm focus:outline-none active:outline-none border border-gray-300 w-full md:w-[24rem] h-10 pl-11 pr-4 rounded-sm"
         />
       </div>
 
@@ -49,7 +50,7 @@ export default function Header() {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Popover.Panel className="absolute right-0 z-10 mt-2.5 transform w-80">
+                <Popover.Panel className="absolute md:right-0 -right-20 z-10 mt-2.5 transform w-80">
                   <div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
                     <strong className="text-gray-700 font-medium">
                       Messages
@@ -64,7 +65,7 @@ export default function Header() {
           )}
         </Popover>
         {/* notifications box */}
-        <Popover className="relative">
+        <Popover className="relative ">
           {({ open }) => (
             <>
               <Popover.Button
@@ -84,7 +85,7 @@ export default function Header() {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Popover.Panel className="absolute right-0 z-10 mt-2.5 transform w-80">
+                <Popover.Panel className="absolute right-0 z-10 mt-2.5 transform w-72 ">
                   <div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
                     <strong className="text-gray-700 font-medium">
                       Notifications
