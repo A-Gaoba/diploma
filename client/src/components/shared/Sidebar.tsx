@@ -6,6 +6,8 @@ import Menus from "../../data/index";
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [openSubMenuIndexes, setOpenSubMenuIndexes] = useState<number[]>([]);
+  const [hoveredElement, setHoveredElement] = useState(null);
+
 
 
   const toggleSidebar = () => {
@@ -22,16 +24,33 @@ const Sidebar = () => {
 
   const isSubMenuOpen = (index) => openSubMenuIndexes.includes(index);
 
+  const handleMouseEnter = (element) => {
+    if (!isOpen) {
+      setHoveredElement(element);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredElement(null);
+  };
+
   const renderSubMenu = (subMenuItems, parentIndex) => (
     <ul>
       {subMenuItems.map((item, index) => (
         <Link to={item.path} key={index}>
-          <li className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 px-8">
+          <li className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 md:px-8 ml-2 "
+            onMouseEnter={() => handleMouseEnter(item.title)}
+            onMouseLeave={handleMouseLeave}
+          >
             <img
               src={`./src/assets/${item.src}.svg`}
               alt="image of the element"
               className="w-5 h-5"
             />
+            {hoveredElement === item.title && (
+              <div className="absolute bg-red-200 text-black p-2 rounded-md ml-6">
+                {item.title}
+              </div>)}
             <span className={`${!isOpen && "hidden"} origin-left duration-200 py-2`}>
               {item.title}
             </span>
@@ -73,12 +92,21 @@ const Sidebar = () => {
               <li
                 className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 ${menu.gap ? "mt-9" : "mt-2"
                   } ${index === 0 && "bg-light-white"}`}
+                onMouseEnter={() => handleMouseEnter(menu.title)}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => toggleSubMenu(index)}
               >
                 <img
                   src={`./src/assets/${menu.src}.svg`}
                   alt="image of the element"
                   className="w-6 h-6"
                 />
+                {hoveredElement === menu.title && (
+                  <div className="absolute bg-red-200 text-black p-2 rounded-md ml-12">
+                    {menu.title}
+                  </div>
+                )}
+
                 <span className={`${!isOpen && "hidden"} origin-left duration-200 py-2`}>
                   {menu.title}
                 </span>
