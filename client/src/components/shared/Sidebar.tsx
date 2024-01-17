@@ -19,8 +19,17 @@ const Sidebar = () => {
     <ul>
       {subMenuItems.map((item, index) => (
         <Link to={item.path} key={index}>
-          <li className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4">
-            {item.title}
+          <li className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 px-8">
+            <img
+              src={`./src/assets/${item.src}.svg`}
+              alt="image of the element"
+              className="w-5 h-5"
+            />
+            <span
+              className={`${!isOpen && "hidden"} origin-left duration-200 py-2`}
+            >
+              {item.title}
+            </span>
           </li>
         </Link>
       ))}
@@ -71,7 +80,7 @@ const Sidebar = () => {
                 </span>
                 {menu.submenu && isOpen && (
                   <FaAngleDown
-                    className={` ml-16 ${isSubMenuOpen && "rotate-180"}`}
+                    className={`ml-16 ${isSubMenuOpen && "rotate-180"}`}
                     onClick={toggleSubMenu}
                   />
                 )}

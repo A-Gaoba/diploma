@@ -14,53 +14,32 @@ const Menus: MenuItem[] = [
     title: "Teachers",
     src: "teacher",
     path: "/teachers",
-    submenu: true, // Change this line
+    submenu: true,
     subMenuItem: [
-      { title: "List of Teachers", src: "list", path: "/teachers/list" },
-      { title: "Add Teacher", src: "add", path: "/teachers/add" },
+      { title: "List of Teachers", src: "student", path: "/teachers/list" },
+      { title: "Add Teacher", src: "student", path: "/teachers/add" },
     ],
   },
   {
     title: "Students",
     src: "student",
     path: "/students",
-    submenu: true, // Change this line
+    submenu: true,
     subMenuItem: [
-      { title: "List of Students", src: "list", path: "/students/list" },
-      { title: "Add Student", src: "add", path: "/students/add" },
+      { title: "List of Students", src: "student", path: "/students/list" },
+      { title: "Add Student", src: "student", path: "/students/add" },
     ],
   },
-  { title: "Classes", src: "class", path: "/classes", submenu: false }, // Add submenu property
-  { title: "Subjects", src: "subject", path: "/subjects", submenu: false }, // Add submenu property
+  { title: "Classes", src: "class", path: "/classes", submenu: false },
+  { title: "Subjects", src: "subject", path: "/subjects", submenu: false },
   {
     title: "Attendance",
     src: "attendance",
     path: "/attendance",
     submenu: false,
-  }, // Add submenu property
-  { title: "Exams", src: "exam", path: "/exams", submenu: false }, // Add submenu property
-  { title: "Settings", src: "Setting", path: "/settings", submenu: false }, // Add submenu property
-  {
-    title: "Log out",
-    src: "logout",
-    path: "/login",
-    gap: true,
-    submenu: false,
-  }, // Add submenu property
-  {
-    title: "Log out",
-    src: "logout",
-    path: "/login",
-    gap: true,
-    submenu: false,
-  }, // Add submenu property
-  {
-    title: "Log out",
-    src: "logout",
-    path: "/login",
-    gap: true,
-    submenu: false,
-  }, // Add submenu property
+  },
+  { title: "Exams", src: "exam", path: "/exams", submenu: false },
+  { title: "Settings", src: "Setting", path: "/settings", submenu: false },
   {
     title: "Log out",
     src: "logout",
