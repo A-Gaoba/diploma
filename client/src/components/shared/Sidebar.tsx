@@ -46,14 +46,14 @@ const Sidebar = () => {
     <div className="flex">
       <div
         className={`${isOpen ? "w-72" : "w-20"
-          } bg-dark-purple h-screen p-5 pt-1 relative duration-300`}
+          } bg-dark-purple p-5 pt-1 relative duration-300`}
       >
         <div className="flex items-center">
-          <div className="flex gap-x-4 items-center p-2">
+          <div className="flex gap-x-4 items-center ">
             <img
               src="./src/assets/logo.svg"
               alt="logo"
-              className="cursor-pointer w-10 h-12"
+              className="cursor-pointer w-12 h-12"
             />
             <h1 className="font-bold text-2xl hidden md:flex text-white">
               ALNAHDAH
