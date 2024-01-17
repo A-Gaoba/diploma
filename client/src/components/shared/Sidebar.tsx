@@ -5,7 +5,8 @@ import Menus from "../../data/index";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const [openSubMenuIndexes, setOpenSubMenuIndexes] = useState([]);
+  const [openSubMenuIndexes, setOpenSubMenuIndexes] = useState<number[]>([]);
+
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
