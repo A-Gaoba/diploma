@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ["/src/main.jsx"],
+      external: ['/vercel/path0/client/src/main.jsx']
       // Add any other external modules if needed
     },
   },
