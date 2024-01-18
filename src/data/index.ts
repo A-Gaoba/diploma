@@ -30,7 +30,16 @@ const Menus: MenuItem[] = [
       { title: "Add Student", src: "student", path: "/students/add" },
     ],
   },
-  { title: "Classes", src: "class", path: "/classes", submenu: false },
+  {
+    title: "Classes",
+    src: "class",
+    path: "/",
+    submenu: true,
+    subMenuItem: [
+      { title: "Class List", src: "class", path: "/classes" },
+      { title: "Create Class", src: "class", path: "/classes/create" },
+    ],
+  },
   { title: "Subjects", src: "subject", path: "/subjects", submenu: false },
   {
     title: "Attendance",
@@ -466,6 +475,21 @@ export const teachersData: TeacherPageProps[] = [
     bio: "I am dedicated to instilling a sense of wonder and curiosity about the natural world. My goal is to inspire future scientists and environmental advocates. In my spare time, I enjoy hiking and conducting field research.",
   },
   // Add more teachers with different subjects and details
+];
+
+export const classes = [
+  { id: 1, title: "Class 1", numberOfStudents: 25, numberOfGroups: 1 },
+  { id: 2, title: "Class 2", numberOfStudents: 30, numberOfGroups: 1 },
+  { id: 3, title: "Class 3", numberOfStudents: 22, numberOfGroups: 1 },
+  { id: 4, title: "Class 4", numberOfStudents: 28, numberOfGroups: 1 },
+  { id: 5, title: "Class 5", numberOfStudents: 44, numberOfGroups: 2 },
+  { id: 6, title: "Class 6", numberOfStudents: 26, numberOfGroups: 1 },
+  { id: 7, title: "Class 7", numberOfStudents: 39, numberOfGroups: 2 },
+  { id: 8, title: "Class 8", numberOfStudents: 32, numberOfGroups: 2 },
+  { id: 9, title: "Class 9", numberOfStudents: 28, numberOfGroups: 1 },
+  { id: 10, title: "Class 10", numberOfStudents: 65, numberOfGroups: 3 },
+  { id: 11, title: "Class 11", numberOfStudents: 35, numberOfGroups: 2 },
+  { id: 12, title: "Class 12", numberOfStudents: 40, numberOfGroups: 2 },
 ];
 
 export default Menus;
