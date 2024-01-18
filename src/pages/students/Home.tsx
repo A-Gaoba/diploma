@@ -5,24 +5,34 @@ import { Link } from 'react-router-dom';
 
 interface StudentCardProps {
   student: StudentPageProps;
+  index: number;
 }
 
-const StudentCard: React.FC<StudentCardProps> = ({ student }) => (
-  <div className="border p-4 flex flex-col justify-center items-center">
-    <img
-      src="{student.image}"
-      alt={`${student.firstName} ${student.lastName}`}
-      className="mb-2 w-32 h-32 object-cover rounded-full"
-    />
-    <p className="text-lg font-semibold">{`${student.firstName} ${student.lastName}`}</p>
-    <p className="text-gray-600">{`Class ${student.class}`}</p>
-    <p className="text-gray-600">{`ID: ${student.id}`}</p>
-    <Link to={`/students/${student.id}`}>
-      <button className="mt-2 bg-dark-purple text-white px-4 py-2 rounded hover:bg-blue-600">View</button>
-    </Link>
-  </div>
+const StudentCard: React.FC<StudentCardProps> = ({ student, index }) => (
+  <tr>
+    <td className="border p-1 text-center">{index + 1}</td>
+    <td className="border p-1 text-center">
+      <div className="flex justify-center">
+        <img
+          src={student.image}
+          alt={`${student.firstName} ${student.lastName}`}
+          className="w-8 h-8 object-cover rounded-full"
+        />
+      </div>
+    </td>
+    <td className="border p-1 text-center">{`${student.firstName} ${student.lastName}`}</td>
+    <td className="border p-1 text-center">{student.id}</td>
+    <td className="border p-1 text-center">{student.dateOfBirth}</td>
+    <td className="border p-1 text-center">{student.city}</td>
+    <td className="border p-1 text-center">{student.grade}</td>
+    <td className="border p-4 text-center">{student.class}</td>
+    <td className="border p-1 text-center">
+      <Link to={`/students/${student.id}`}>
+        <button className="bg-dark-purple text-white px-4 py-2 rounded hover:bg-blue-600">View</button>
+      </Link>
+    </td>
+  </tr>
 );
-
 // Updated Home component
 const Home: React.FC = () => {
   const [filter, setFilter] = useState<string | null>(null);
@@ -52,7 +62,10 @@ const Home: React.FC = () => {
       <nav className=" ">
         <div className="flex items-center text-white">
           <span className="text-black text-lg font-semibold">Class:</span>
-          <button className={`ml-4 bg-dark-purple p-2 rounded-xl ${filter === null ? 'text-dark-purple bg-white' : ''}`} onClick={() => handleFilterClick(null)}>
+          <button
+            className={`ml-4 bg-dark-purple p-2 rounded-xl ${filter === null ? 'text-dark-purple bg-white' : ''}`}
+            onClick={() => handleFilterClick(null)}
+          >
             All
           </button>
           {["Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12"].map((classOption) => (
@@ -67,15 +80,30 @@ const Home: React.FC = () => {
         </div>
       </nav>
 
-      {/* Student cards grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-8">
-        {paginatedStudents.map((student) => (
-          <StudentCard key={student.id} student={student} />
-        ))}
-      </div>
+      {/* Student cards table */}
+      <table className="mt-8 w-full">
+        <thead>
+          <tr>
+            <th className="border p-1 text-center">No</th>
+            <th className="border p-1 text-center">Image</th>
+            <th className="border p-1 text-center">Name</th>
+            <th className="border p-1 text-center">ID</th>
+            <th className="border p-1 text-center">BirthDay</th>
+            <th className="border p-1 text-center">City</th>
+            <th className="border p-1 text-center">Grade</th>
+            <th className="border p-1 text-center">Class</th>
+            <th className="border p-1 text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {paginatedStudents.map((student, index) => (
+            <StudentCard key={student.id} student={student} index={index} />
+          ))}
+        </tbody>
+      </table>
 
       {showPagination && (
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center items-center mt-8">
           {[...Array(totalPages)].map((_, index) => (
             <button
               key={index}
