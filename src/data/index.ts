@@ -13,20 +13,20 @@ const Menus: MenuItem[] = [
   {
     title: "Teachers",
     src: "teacher",
-    path: "/teachers",
+    path: "/",
     submenu: true,
     subMenuItem: [
-      { title: "List of Teachers", src: "student", path: "/teachers/list" },
+      { title: "List of Teachers", src: "student", path: "/teachers" },
       { title: "Add Teacher", src: "student", path: "/teachers/add" },
     ],
   },
   {
     title: "Students",
     src: "student",
-    path: "/students",
+    path: "/",
     submenu: true,
     subMenuItem: [
-      { title: "List of Students", src: "student", path: "/students/list" },
+      { title: "List of Students", src: "student", path: "/students" },
       { title: "Add Student", src: "student", path: "/students/add" },
     ],
   },
@@ -46,7 +46,7 @@ const Menus: MenuItem[] = [
     path: "/login",
     gap: true,
     submenu: false,
-  }, // Add submenu property
+  },
 ];
 
 export interface StudentPageProps {
@@ -58,6 +58,7 @@ export interface StudentPageProps {
   phoneNumber: string;
   address: string;
   grade: number;
+  class?: string;
   image: string;
 }
 
@@ -72,6 +73,7 @@ export const studentsData: StudentPageProps[] = [
     phoneNumber: "555-123-4567",
     address: "789 Pine St, Villagetown",
     grade: 1,
+    class: "Class 1",
     image: "https://source.unsplash.com/64x64/?student=diana",
   },
   {
@@ -83,6 +85,7 @@ export const studentsData: StudentPageProps[] = [
     phoneNumber: "333-555-7890",
     address: "101 Elm St, Suburbia",
     grade: 1,
+    class: "Class 1",
     image: "https://source.unsplash.com/64x64/?student=alice",
   },
 
@@ -96,6 +99,7 @@ export const studentsData: StudentPageProps[] = [
     phoneNumber: "987-654-3210",
     address: "456 Oak St, Townsville",
     grade: 2,
+    class: "Class 2",
     image: "https://source.unsplash.com/64x64/?student=bob",
   },
   {
@@ -107,6 +111,7 @@ export const studentsData: StudentPageProps[] = [
     phoneNumber: "123-456-7890",
     address: "123 Main St, Cityville",
     grade: 2,
+    class: "Class 2",
     image: "https://source.unsplash.com/64x64/?student=charlie",
   },
 
@@ -120,6 +125,7 @@ export const studentsData: StudentPageProps[] = [
     phoneNumber: "555-987-6543",
     address: "456 Birch St, Countryside",
     grade: 3,
+    class: "Class 3",
     image: "https://source.unsplash.com/64x64/?student",
   },
   {
@@ -348,6 +354,118 @@ export const studentsData: StudentPageProps[] = [
     grade: 12,
     image: "https://source.unsplash.com/64x64/?student",
   },
+];
+
+export interface TeacherPageProps {
+  id: number;
+  firstName: string;
+  lastName: string;
+  image: string;
+  subject: string;
+  gender?: string;
+  dateOfBirth?: string;
+  email: string;
+  phone?: string;
+  degrees: string[];
+  institutions: string[];
+  specializations: string[];
+  yearsOfExperience?: number;
+  previousInstitutions: string[];
+  subjectsTaught: string[];
+  awards: string[];
+  achievements?: string;
+  classSchedule?: string;
+  officeLocation?: string;
+  preferredCommunication?: string;
+  bio?: string;
+}
+
+export const teachersData: TeacherPageProps[] = [
+  {
+    id: 1,
+    firstName: "John",
+    lastName: "Doe",
+    image: "https://source.unsplash.com/64x64/?student=diana",
+    subject: "Mathematics",
+    gender: "Male",
+    dateOfBirth: "1980-01-01",
+    email: "john.doe@example.com",
+    phone: "+1234567890",
+    degrees: ["Bachelor of Science in Mathematics", "Master of Education"],
+    institutions: ["University A", "University B"],
+    specializations: ["Algebra", "Geometry"],
+    yearsOfExperience: 10,
+    previousInstitutions: ["School X", "School Y"],
+    subjectsTaught: ["Algebra 1", "Geometry", "Trigonometry"],
+    awards: ["Best Math Teacher Award", "Excellence in Education"],
+    achievements: "Published a research paper on teaching methods.",
+    classSchedule: "Monday: 9 AM - 11 AM, Wednesday: 2 PM - 4 PM",
+    officeLocation: "Room 203",
+    preferredCommunication: "Email",
+    bio: "I am passionate about making math enjoyable and accessible to every student. In my free time, I enjoy solving challenging math problems and exploring new teaching techniques.",
+  },
+  {
+    id: 2,
+    firstName: "Jane",
+    lastName: "Smith",
+    image: "jane-smith.jpg",
+    subject: "English",
+    gender: "Female",
+    dateOfBirth: "1985-05-15",
+    email: "jane.smith@example.com",
+    phone: "+9876543210",
+    degrees: ["Bachelor of Arts in English", "Master of Arts in Education"],
+    institutions: ["College C", "University D"],
+    specializations: ["Literature", "Grammar"],
+    yearsOfExperience: 8,
+    previousInstitutions: ["High School Z", "Middle School W"],
+    subjectsTaught: [
+      "American Literature",
+      "Grammar and Composition",
+      "Creative Writing",
+    ],
+    awards: [
+      "Outstanding English Educator Award",
+      "Creative Writing Excellence",
+    ],
+    achievements: "Published a collection of short stories.",
+    classSchedule: "Tuesday: 10 AM - 12 PM, Thursday: 3 PM - 5 PM",
+    officeLocation: "Room 105",
+    preferredCommunication: "Phone",
+    bio: "I believe in fostering a love for literature and empowering students to express themselves through writing. Outside of teaching, I enjoy reading classic novels and supporting local poetry events.",
+  },
+  {
+    id: 3,
+    firstName: "Robert",
+    lastName: "Johnson",
+    image: "robert-johnson.jpg",
+    subject: "Science",
+    gender: "Male",
+    dateOfBirth: "1982-09-30",
+    email: "robert.johnson@example.com",
+    phone: "+1122334455",
+    degrees: ["Bachelor of Science in Biology", "Doctorate in Education"],
+    institutions: ["University E", "Graduate School F"],
+    specializations: ["Biology", "Environmental Science"],
+    yearsOfExperience: 12,
+    previousInstitutions: ["Science Academy", "Research Institute"],
+    subjectsTaught: [
+      "Biology 101",
+      "Environmental Science",
+      "Anatomy and Physiology",
+    ],
+    awards: [
+      "Distinguished Science Educator Award",
+      "Environmental Stewardship",
+    ],
+    achievements:
+      "Led a student research team to win the National Science Fair.",
+    classSchedule: "Monday: 1 PM - 3 PM, Wednesday: 9 AM - 11 AM",
+    officeLocation: "Lab 304",
+    preferredCommunication: "Email",
+    bio: "I am dedicated to instilling a sense of wonder and curiosity about the natural world. My goal is to inspire future scientists and environmental advocates. In my spare time, I enjoy hiking and conducting field research.",
+  },
+  // Add more teachers with different subjects and details
 ];
 
 export default Menus;

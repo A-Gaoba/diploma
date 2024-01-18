@@ -48,7 +48,7 @@ const Sidebar = () => {
               className="w-5 h-5"
             />
             {hoveredElement === item.title && (
-              <div className="absolute bg-red-200 text-black p-2 rounded-md ml-6">
+              <div className="absolute bg-white text-black p-2 rounded-md ml-6">
                 {item.title}
               </div>)}
             <span className={`${!isOpen && "hidden"} origin-left duration-200 py-2`}>
@@ -102,7 +102,7 @@ const Sidebar = () => {
                   className="w-6 h-6"
                 />
                 {hoveredElement === menu.title && (
-                  <div className="absolute bg-red-200 text-black p-2 rounded-md ml-12">
+                  <div className="absolute bg-white text-black p-2 rounded-md ml-12">
                     {menu.title}
                   </div>
                 )}

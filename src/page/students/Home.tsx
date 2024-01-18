@@ -4,30 +4,35 @@ import { studentsData, StudentPageProps } from '../../data/index';
 import { Link } from 'react-router-dom';
 // import logo from "../../assets/image.jpg"
 
-
 interface StudentCardProps {
   student: StudentPageProps;
 }
 
 const StudentCard: React.FC<StudentCardProps> = ({ student }) => (
   <div className="border p-4 flex flex-col justify-center items-center">
-    <img src={student.image} alt={`${student.firstName} ${student.lastName}`} className="mb-2 w-32 h-32 object-cover rounded-full" />
+    <img
+      src={student.image}
+      alt={`${student.firstName} ${student.lastName}`}
+      className="mb-2 w-32 h-32 object-cover rounded-full bg-dark-purple"
+    />
     <p className="text-lg font-semibold">{`${student.firstName} ${student.lastName}`}</p>
-    <p className="text-gray-600">{`Class ${student.grade}`}</p>
+    <p className="text-gray-600">{`Class ${student.class}`}</p>
     <p className="text-gray-600">{`ID: ${student.id}`}</p>
     <Link to={`/students/${student.id}`}>
-      <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">View</button>
+      <button className="mt-2 bg-dark-purple text-white px-4 py-2 rounded hover:bg-blue-600">View</button>
     </Link>
   </div>
 );
 
+// Updated Home component
 const Home: React.FC = () => {
-  const [filter, setFilter] = useState<number | null>(null);
+  const [filter, setFilter] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const itemsPerPage = 9;
+
+  const itemsPerPage = 10;
 
   const filteredStudents = filter
-    ? studentsData.filter((student) => student.grade === filter)
+    ? studentsData.filter((student) => student.class === filter)
     : studentsData;
 
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -35,50 +40,54 @@ const Home: React.FC = () => {
   const paginatedStudents = filteredStudents.slice(startIndex, endIndex);
   const totalPages = Math.ceil(filteredStudents.length / itemsPerPage);
 
-  const handleFilterClick = (selectedFilter: number | null) => {
+  const handleFilterClick = (selectedFilter: string | null) => {
     setFilter(selectedFilter);
-    setCurrentPage(1); // Reset page when changing the filter
+    setCurrentPage(1);
   };
+
+  const showPagination = filteredStudents.length > itemsPerPage;
 
   return (
     <div>
       {/* Navbar for filtering */}
-      <nav className="bg-white p-4 ">
-        <div className="flex items-center">
-          <span className="text-black text-lg font-semibold">Filter by Grade:</span>
-          <button className={`ml-4 ${filter === null ? 'font-bold' : ''}`} onClick={() => handleFilterClick(null)}>
+      <nav className=" ">
+        <div className="flex items-center text-white">
+          <span className="text-black text-lg font-semibold">Class:</span>
+          <button className={`ml-4 bg-dark-purple p-2 rounded-xl ${filter === null ? 'text-dark-purple bg-white' : ''}`} onClick={() => handleFilterClick(null)}>
             All
           </button>
-          {[...Array(12).keys()].map((grade) => (
+          {["Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12"].map((classOption) => (
             <button
-              key={grade}
-              className={`ml-4 ${filter === grade + 1 ? 'font-bold' : ''}`}
-              onClick={() => handleFilterClick(grade + 1)}
+              key={classOption}
+              className={`ml-4 bg-dark-purple p-2 rounded-xl text-sm${filter === classOption ? ' text-dark-purple bg-white' : ''}`}
+              onClick={() => handleFilterClick(classOption)}
             >
-              {grade + 1}
+              {classOption}
             </button>
           ))}
         </div>
       </nav>
 
+      {/* Student cards grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-8">
         {paginatedStudents.map((student) => (
           <StudentCard key={student.id} student={student} />
         ))}
       </div>
 
-      {/* Pagination */}
-      <div className="flex justify-center mt-4">
-        {[...Array(totalPages)].map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentPage(index + 1)}
-            className={`px-4 py-2 mx-2 ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-white'}`}
-          >
-            {index + 1}
-          </button>
-        ))}
-      </div>
+      {showPagination && (
+        <div className="flex justify-center mt-8">
+          {[...Array(totalPages)].map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentPage(index + 1)}
+              className={`px-4 py-2 ${currentPage === index + 1 ? 'bg-dark-purple text-white' : 'bg-white'}`}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

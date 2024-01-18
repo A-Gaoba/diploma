@@ -54,7 +54,7 @@ const StudentPage: React.FC = () => {
             <img
               src={student.image}
               alt={`${student.firstName} ${student.lastName}`}
-              className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover rounded-3xl"
+              className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover rounded-3xl bg-slate-300"
             />
           </div>
           <div>
