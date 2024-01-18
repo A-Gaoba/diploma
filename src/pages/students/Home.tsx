@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { studentsData, StudentPageProps } from '../../data/index';
 import { Link } from 'react-router-dom';
-// import logo from "../../assets/image.jpg"
 
 interface StudentCardProps {
   student: StudentPageProps;
@@ -11,9 +10,9 @@ interface StudentCardProps {
 const StudentCard: React.FC<StudentCardProps> = ({ student }) => (
   <div className="border p-4 flex flex-col justify-center items-center">
     <img
-      src={student.image}
+      src="{student.image}"
       alt={`${student.firstName} ${student.lastName}`}
-      className="mb-2 w-32 h-32 object-cover rounded-full bg-dark-purple"
+      className="mb-2 w-32 h-32 object-cover rounded-full"
     />
     <p className="text-lg font-semibold">{`${student.firstName} ${student.lastName}`}</p>
     <p className="text-gray-600">{`Class ${student.class}`}</p>

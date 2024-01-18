@@ -371,6 +371,7 @@ export interface TeacherPageProps {
   lastName: string;
   image: string;
   subject: string;
+  timeOfClass: string;
   gender?: string;
   dateOfBirth?: string;
   email: string;
@@ -394,8 +395,9 @@ export const teachersData: TeacherPageProps[] = [
     id: 1,
     firstName: "John",
     lastName: "Doe",
-    image: "https://source.unsplash.com/64x64/?student=diana",
+    image: "https://source.unsplash.com/64x64/?student=alice",
     subject: "Mathematics",
+    timeOfClass: "9:00 AM - 11:00 AM",
     gender: "Male",
     dateOfBirth: "1980-01-01",
     email: "john.doe@example.com",
@@ -419,6 +421,7 @@ export const teachersData: TeacherPageProps[] = [
     lastName: "Smith",
     image: "jane-smith.jpg",
     subject: "English",
+    timeOfClass: "10:00 AM - 12:00 PM",
     gender: "Female",
     dateOfBirth: "1985-05-15",
     email: "jane.smith@example.com",
@@ -449,6 +452,7 @@ export const teachersData: TeacherPageProps[] = [
     lastName: "Johnson",
     image: "robert-johnson.jpg",
     subject: "Science",
+    timeOfClass: "1:00 PM - 3:00 PM",
     gender: "Male",
     dateOfBirth: "1982-09-30",
     email: "robert.johnson@example.com",
