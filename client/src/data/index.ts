@@ -72,7 +72,7 @@ export const studentsData: StudentPageProps[] = [
     phoneNumber: "555-123-4567",
     address: "789 Pine St, Villagetown",
     grade: 1,
-    image: "https://source.unsplash.com/64x64/?student",
+    image: "https://source.unsplash.com/64x64/?student=diana",
   },
   {
     id: 2,
@@ -83,7 +83,7 @@ export const studentsData: StudentPageProps[] = [
     phoneNumber: "333-555-7890",
     address: "101 Elm St, Suburbia",
     grade: 1,
-    image: "https://source.unsplash.com/64x64/?student",
+    image: "https://source.unsplash.com/64x64/?student=alice",
   },
 
   // Grade 2
@@ -96,7 +96,7 @@ export const studentsData: StudentPageProps[] = [
     phoneNumber: "987-654-3210",
     address: "456 Oak St, Townsville",
     grade: 2,
-    image: "https://source.unsplash.com/64x64/?student",
+    image: "https://source.unsplash.com/64x64/?student=bob",
   },
   {
     id: 4,
@@ -107,7 +107,7 @@ export const studentsData: StudentPageProps[] = [
     phoneNumber: "123-456-7890",
     address: "123 Main St, Cityville",
     grade: 2,
-    image: "https://source.unsplash.com/64x64/?student",
+    image: "https://source.unsplash.com/64x64/?student=charlie",
   },
 
   // Grade 3
