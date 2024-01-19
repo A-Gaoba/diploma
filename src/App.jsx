@@ -14,7 +14,6 @@ import CreateClass from "./pages/classes/CreateClass";
 import Subjects from "./pages/Subjects/Home";
 import Attendance from "./pages/attendance/Home";
 import Login from "./auth/Login";
-import Logout from "./auth/Logout"; // Import the Logout component
 
 const App = () => {
   const [isAdminAuthenticated, setAdminAuthenticated] = useState(false);
@@ -52,8 +51,7 @@ const App = () => {
             {/* teacher */}
             <Route path="/teachers" element={<TeacherPage />} />
             <Route path="/teachers/:id" element={<TeacherProfile />} />
-            <Route path="/teachers/add" element={< AddTeacher />} />
-
+            <Route path="/teachers/add" element={<AddTeacher />} />
             {/* <Route path="/courses" element={<CoursePage />} /> */}
             {/* class */}
             <Route path="/classes" element={<Classes />} />
@@ -61,13 +59,10 @@ const App = () => {
             <Route path="/classes/create" element={<CreateClass />} />
             <Route path="/subjects" element={<Subjects />} />
             <Route path="/attendance" element={<Attendance />} />
-            {/* Include the Logout component */}
-            <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
           </Route>
         ) : (
           <Route path="/" element={<Login onLogin={handleLogin} />} />
         )}
-        {/* <Route path="*" element={<Navigate to="/" />} /> */}
       </Routes>
     </Router>
   );

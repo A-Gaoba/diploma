@@ -1,5 +1,3 @@
-// AttendanceComponent.tsx
-
 import React, { useState, useEffect } from "react";
 import { StudentPageProps, studentsData } from "../../data/student";
 
