@@ -23,7 +23,7 @@ const Menus: MenuItem[] = [
   {
     title: "Students",
     src: "student",
-    path: "/",
+    path: "/students",
     submenu: true,
     subMenuItem: [
       { title: "List of Students", src: "student", path: "/students" },
