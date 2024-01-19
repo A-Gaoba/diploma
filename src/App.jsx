@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/shared/Layout";
 import Dashboard from "./components/dashboard/Home";
 import StudentPage from "./pages/students/Home";
@@ -57,8 +57,7 @@ const App = () => {
         ) : (
           <Route path="/" element={<Login onLogin={handleLogin} />} />
         )}
-        {/* Add a catch-all route to redirect to login page on refresh */}
-        <Route path="*" element={<Navigate to="/" />} />
+        {/* <Route path="*" element={<Navigate to="/" />} /> */}
       </Routes>
     </Router>
   );
