@@ -107,6 +107,7 @@ const AddStudentForm: React.FC<AddStudentFormProps> = ({ onAddStudent }) => {
             </svg>
           )}
         </div>
+        <label htmlFor="">
         <input
           type="file"
           id="imageInput"
@@ -114,7 +115,10 @@ const AddStudentForm: React.FC<AddStudentFormProps> = ({ onAddStudent }) => {
           onChange={handleImageChange}
           className="hidden"
           accept="image/*"
-        />
+          />
+          {/* adsfas */}
+          </label>
+      
         <button
           type="button"
           onClick={handleUploadButtonClick}

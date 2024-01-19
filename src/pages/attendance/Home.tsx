@@ -1,7 +1,7 @@
 // AttendanceComponent.tsx
 
 import React, { useState, useEffect } from "react";
-import { StudentPageProps, studentsData } from "../../data/index";
+import { StudentPageProps, studentsData } from "../../data/student";
 
 interface Class {
   id: number;

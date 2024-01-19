@@ -1,6 +1,6 @@
 // Home.tsx
 import React, { useState } from 'react';
-import { studentsData, StudentPageProps } from '../../data/index';
+import { studentsData, StudentPageProps } from '../../data/student';
 import { Link } from 'react-router-dom';
 
 interface StudentCardProps {

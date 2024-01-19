@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { studentsData, teachersData } from '../../data/index';
+import { studentsData } from '../../data/student';
+import { teachersData } from '../../data/teachers';
 
 interface PersonalInfoProps {
   label: string;
@@ -10,6 +11,12 @@ interface PersonalInfoProps {
 interface AcademicInfoProps {
   label: string;
   value: string | number;
+}
+
+interface ScheduleDetailsProps {
+  day: string;
+  date: string;
+  time: string;
 }
 
 interface Teacher {
@@ -32,6 +39,12 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ label, value }) => (
   </p>
 );
 
+const ScheduleDetails: React.FC<ScheduleDetailsProps> = ({ day, date, time }) => (
+  <p className="mb-2 text-sm md:text-base">
+    <span className="text-gray-700 font-bold">Schedule:</span> {`${day}, ${date}, ${time}`}
+  </p>
+);
+
 const TeacherBox: React.FC<{ teacher: Teacher }> = ({ teacher }) => (
   <div className="bg-gray-200 p-4 mb-4 rounded-md shadow-md flex flex-col justify-center items-center">
     <img
@@ -46,6 +59,12 @@ const TeacherBox: React.FC<{ teacher: Teacher }> = ({ teacher }) => (
 );
 
 const StudentPage: React.FC = () => {
+  const [showAllTeachers, setShowAllTeachers] = useState(false);
+
+  const toggleShowAllTeachers = () => {
+    setShowAllTeachers(!showAllTeachers);
+  };
+
   const attendanceInfo = {
     totalClassesAttended: 25,
     attendancePercentage: 80,
@@ -59,7 +78,7 @@ const StudentPage: React.FC = () => {
   }
 
   return (
-    <div className="md:p-8 bg-gray-100">
+    <div className="md:p-1 bg-gray-100">
       <div className="flex flex-col md:flex-row">
         <main className="md:w-3/4">
           <h1 className="md:text-3xl font-bold bg-white p-2">{`${student.firstName} ${student.lastName}'s Profile`}</h1>
@@ -100,9 +119,30 @@ const StudentPage: React.FC = () => {
         </main>
 
         <aside className="md:w-1/4 pr-0 md:pl-8 mb-8 md:mb-0">
-          {teachersData.map((teacher) => (
-            <TeacherBox key={teacher.id} teacher={teacher} />
-          ))}
+          <section className="mb-8 bg-white p-6 rounded-md shadow-md">
+            <h2 className=" font-semibold mb-2">Schedule Details</h2>
+            <ScheduleDetails day="Thursday" date="10th April" time="9:45" />
+            <ScheduleDetails day="Friday" date="11th April" time="10:30" />
+          </section>
+
+          <section className="mb-8 bg-white p-6 rounded-md shadow-md">
+            <h2 className="md:text-xl font-semibold mb-2">Teachers</h2>
+            {showAllTeachers
+              ? teachersData.map((teacher) => (
+                <TeacherBox key={teacher.id} teacher={teacher} />
+              ))
+              : teachersData.slice(0, 3).map((teacher) => (
+                <TeacherBox key={teacher.id} teacher={teacher} />
+              ))}
+            {!showAllTeachers && teachersData.length > 3 && (
+              <button
+                className="text-blue-500 hover:underline"
+                onClick={toggleShowAllTeachers}
+              >
+                Show More
+              </button>
+            )}
+          </section>
         </aside>
       </div>
     </div>

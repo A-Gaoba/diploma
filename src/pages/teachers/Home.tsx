@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { teachersData, TeacherPageProps } from '../../data/index';
+import { teachersData, TeacherPageProps } from '../../data/teachers';
 import { Link } from 'react-router-dom';
 
 interface TeacherCardProps {

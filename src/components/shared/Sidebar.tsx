@@ -113,7 +113,6 @@ const Sidebar = () => {
                 {menu.submenu && isOpen && (
                   <FaAngleDown
                     className={`ml-16 ${isSubMenuOpen(index) && "rotate-180"}`}
-                    onClick={() => toggleSubMenu(index)}
                   />
                 )}
               </li>
