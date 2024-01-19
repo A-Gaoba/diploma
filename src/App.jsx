@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/shared/Layout";
 import Dashboard from "./components/dashboard/Home";
 import StudentPage from "./pages/students/Home";
@@ -10,32 +11,57 @@ import Classes from "./pages/classes/Home";
 import ClassInfo from "./pages/classes/ClassInfo";
 import CreateClass from "./pages/classes/CreateClass";
 import Subjects from "./pages/Subjects/Home";
-import Attendece from "./pages/attendance/Home";
+import Attendance from "./pages/attendance/Home";
+import Login from "./auth/Login";
 
-function App() {
+const App = () => {
+  const [isAdminAuthenticated, setAdminAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Check authentication status on component mount
+    const isAuthenticated = localStorage.getItem("isAdminAuthenticated");
+    if (isAuthenticated) {
+      setAdminAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogin = () => {
+    // Set authentication status and save it to localStorage
+    setAdminAuthenticated(true);
+    localStorage.setItem("isAdminAuthenticated", "true");
+  };
+
+  const handleLogout = () => {
+    // Clear authentication status from state and localStorage
+    setAdminAuthenticated(false);
+    localStorage.removeItem("isAdminAuthenticated");
+  };
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Dashboard />} />
-          {/* student */}
-          <Route path="/students" element={<StudentPage />} />
-          <Route path="/students/:id" element={<StudentProfile />} />
-          <Route path="/students/add" element={<AddStudent />} />
-          {/* teacher */}
-          <Route path="/teachers" element={<TeacherPage />} />
-          <Route path="/teachers/:id" element={<TeacherProfile />} />
-          {/* classes */}
-          <Route path="/classes" element={<Classes />} />
-          <Route path="/classes/:id" element={<ClassInfo />} />
-          <Route path="/classes/create" element={<CreateClass />} />
-          {/* subjects */}
-          <Route path="/subjects" element={<Subjects />} />
-          <Route path="/attendance" element={<Attendece />} />
-        </Route>
+        {isAdminAuthenticated ? (
+          <Route path="/" element={<Layout onLogout={handleLogout} />}>
+            <Route index element={<Dashboard />} />
+            <Route path="/students" element={<StudentPage />} />
+            <Route path="/students/:id" element={<StudentProfile />} />
+            <Route path="/students/add" element={<AddStudent />} />
+            <Route path="/teachers" element={<TeacherPage />} />
+            <Route path="/teachers/:id" element={<TeacherProfile />} />
+            <Route path="/classes" element={<Classes />} />
+            <Route path="/classes/:id" element={<ClassInfo />} />
+            <Route path="/classes/create" element={<CreateClass />} />
+            <Route path="/subjects" element={<Subjects />} />
+            <Route path="/attendance" element={<Attendance />} />
+          </Route>
+        ) : (
+          <Route path="/" element={<Login onLogin={handleLogin} />} />
+        )}
+        {/* Add a catch-all route to redirect to login page on refresh */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;
