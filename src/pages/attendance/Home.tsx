@@ -111,6 +111,7 @@ const AttendanceComponent: React.FC = () => {
                           type="checkbox"
                           onChange={() => handleCheckboxChange(student.id)}
                         />
+                        {/* label  */}
                       </label>
                     </td>
                   ))}
