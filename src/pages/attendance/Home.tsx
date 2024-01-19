@@ -1,6 +1,6 @@
 // AttendanceComponent.tsx
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StudentPageProps, studentsData } from "../../data/index";
 
 interface Class {
@@ -30,6 +30,20 @@ const months: string[] = [
 const AttendanceComponent: React.FC = () => {
   const [selectedClass, setSelectedClass] = useState<Class | null>(null);
   const [selectedMonth, setSelectedMonth] = useState<number>(new Date().getMonth());
+  const [checkedStudents, setCheckedStudents] = useState<{ [key: string]: boolean }>({});
+
+  useEffect(() => {
+    // Load checked data from local storage for the selected month
+    const storedCheckedData = localStorage.getItem(`attendanceCheckedData-${selectedMonth}`);
+    if (storedCheckedData) {
+      setCheckedStudents(JSON.parse(storedCheckedData));
+    }
+  }, [selectedMonth]);
+
+  useEffect(() => {
+    // Save checked data to local storage for the selected month when it changes
+    localStorage.setItem(`attendanceCheckedData-${selectedMonth}`, JSON.stringify(checkedStudents));
+  }, [checkedStudents, selectedMonth]);
 
   const handleClassChange = (classId: number) => {
     const selected = classes.find((c) => c.id === classId);
@@ -40,9 +54,12 @@ const AttendanceComponent: React.FC = () => {
     setSelectedMonth(month);
   };
 
-  const handleCheckboxChange = (studentId: number) => {
-    // Implement your logic to update attendance data
-    console.log(`Class ${selectedClass?.name}, Month ${months[selectedMonth]}, Student ${studentId}`);
+  const handleCheckboxChange = (studentId: number, day: number) => {
+    const key = `${studentId}-${day}`;
+    setCheckedStudents((prevCheckedStudents) => ({
+      ...prevCheckedStudents,
+      [key]: !prevCheckedStudents[key],
+    }));
   };
 
   const getDaysInMonth = (year: number, month: number): number => {
@@ -92,9 +109,9 @@ const AttendanceComponent: React.FC = () => {
           <table className="w-full border border-collapse border-gray-300">
             <thead>
               <tr>
-                <th className="border p-2">Name</th>
+                <th className="border p-1">Name</th>
                 {[...Array(getDaysInMonth(new Date().getFullYear(), selectedMonth))].map((_, index) => (
-                  <th key={index} className="border p-2">
+                  <th key={index} className="border p-1">
                     {index + 1}
                   </th>
                 ))}
@@ -103,13 +120,14 @@ const AttendanceComponent: React.FC = () => {
             <tbody>
               {selectedClass.students.map((student) => (
                 <tr key={student.id}>
-                  <td className="border p-2">{student.firstName} {student.lastName}</td>
+                  <td className="border p-1">{student.firstName} {student.lastName}</td>
                   {[...Array(getDaysInMonth(new Date().getFullYear(), selectedMonth))].map((_, day) => (
-                    <td key={day} className="border p-2">
+                    <td key={day} className="border p-1">
                       <label>
                         <input
                           type="checkbox"
-                          onChange={() => handleCheckboxChange(student.id)}
+                          onChange={() => handleCheckboxChange(student.id, day + 1)}
+                          checked={checkedStudents[`${student.id}-${day + 1}`] || false}
                         />
                         {/* label  */}
                       </label>
