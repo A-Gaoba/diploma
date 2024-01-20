@@ -15,7 +15,7 @@ const StudentCard: React.FC<StudentCardProps> = ({ student, index }) => (
         <img
           src={student.image}
           alt={`${student.firstName} ${student.lastName}`}
-          className="w-8 h-8 object-cover rounded-full"
+          className="w-8 h-8 object-cover rounded-full bg-dark-purple"
         />
       </div>
     </td>
