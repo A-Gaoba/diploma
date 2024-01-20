@@ -7,17 +7,17 @@ interface TeacherCardProps {
 }
 
 const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => (
-  <div className="border p-4 flex flex-col justify-center items-center">
+  <div className="border p-4 flex flex-col justify-center items-center shadow-slate-900 shadow-sm">
     <img
       src={teacher.image || 'default-image.jpg'} // Use a default image if 'image' is undefined
       alt={`${teacher.firstName} ${teacher.lastName}`}
       className="mb-2 w-32 h-32 object-cover rounded-full"
     />
     <p className="text-lg font-semibold">{`${teacher.firstName} ${teacher.lastName}`}</p>
-    <p className="text-gray-600">{`Subject: ${teacher.subject || 'Not specified'}`}</p>
+    <p className="text-gray-600">{` ${teacher.subject || 'Not specified'}`}</p>
     <p className="text-gray-600">{`ID: ${teacher.id || 'Not specified'}`}</p>
     <Link to={`/teachers/${teacher.id}`}>
-      <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">View</button>
+      <button className="mt-2 bg-dark-purple text-white px-4 py-2 rounded hover:bg-blue-600">View</button>
     </Link>
   </div>
 );
@@ -62,7 +62,7 @@ const HomeTeachers: React.FC = () => {
         </div>
       </nav>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 mt-8">
         {paginatedTeachers.map((teacher) => (
           <TeacherCard key={teacher.id || 0} teacher={teacher} />
         ))}
