@@ -11,16 +11,6 @@ interface MenuItem {
 const Menus: MenuItem[] = [
   { title: "Dashboard", src: "dashboard", path: "/", submenu: false },
   {
-    title: "Teachers",
-    src: "teacher",
-    path: "/",
-    submenu: true,
-    subMenuItem: [
-      { title: "List of Teachers", src: "student", path: "/teachers" },
-      { title: "Add Teacher", src: "student", path: "/teachers/add" },
-    ],
-  },
-  {
     title: "Students",
     src: "student",
     path: "/students",
@@ -28,6 +18,16 @@ const Menus: MenuItem[] = [
     subMenuItem: [
       { title: "List of Students", src: "student", path: "/students" },
       { title: "Add Student", src: "student", path: "/students/add" },
+    ],
+  },
+  {
+    title: "Teachers",
+    src: "teacher",
+    path: "/",
+    submenu: true,
+    subMenuItem: [
+      { title: "List of Teachers", src: "student", path: "/teachers" },
+      { title: "Add Teacher", src: "student", path: "/teachers/add" },
     ],
   },
   {

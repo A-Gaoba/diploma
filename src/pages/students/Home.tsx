@@ -57,12 +57,18 @@ const Home: React.FC = () => {
 
   return (
     <div>
+      <div className="flex justify-end text-white p-4 ">
+        <Link to="/students/add">
+          <button type='button' className=" bg-dark-purple p-2 text-white flex items-center mb-4">Add Student</button>
+        </Link>
+      </div>
+      
       {/* Navbar for filtering */}
       <nav className=" ">
         <div className="flex items-center text-white">
           <span className="text-black text-lg font-semibold">Class:</span>
           <button
-            className={`ml-4 bg-dark-purple p-2 rounded-xl ${filter === null ? 'text-dark-purple bg-white' : ''}`}
+            className={`ml-4 bg-dark-purple p-2 rounded-sm ${filter === null ? 'text-dark-purple bg-white' : ''}`}
             onClick={() => handleFilterClick(null)}
           >
             All
@@ -70,7 +76,7 @@ const Home: React.FC = () => {
           {["Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12"].map((classOption) => (
             <button
               key={classOption}
-              className={`ml-4 bg-dark-purple p-2 rounded-xl text-sm${filter === classOption ? ' text-dark-purple bg-white' : ''}`}
+              className={`ml-4 bg-dark-purple p-2 rounded-sm text-sm${filter === classOption ? ' text-dark-purple bg-white' : ''}`}
               onClick={() => handleFilterClick(classOption)}
             >
               {classOption}
@@ -100,6 +106,10 @@ const Home: React.FC = () => {
           ))}
         </tbody>
       </table>
+
+      <p className="text-sm text-gray-600 mt-4">
+        Showing {startIndex + 1} to {endIndex} of {filteredStudents.length} entries
+      </p>
 
       {showPagination && (
         <div className="flex justify-center items-center mt-8">
