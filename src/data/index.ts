@@ -73,4 +73,6 @@ export const classes = [
   { id: 12, title: "Class 12", numberOfStudents: 40, numberOfGroups: 2 },
 ];
 
+
+
 export default Menus;
