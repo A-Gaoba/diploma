@@ -44,6 +44,7 @@ const Login = ({ onLogin }) => {
             />
           </div>
           <div className="md:w-1/3 max-w-sm bgda p-12 h-96 flex flex-col justify-center">
+          <h1 className="text-center mb-5 text-white font-bold">Please Log In</h1>
             <input
               className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded"
               type="text"
@@ -79,7 +80,7 @@ const Login = ({ onLogin }) => {
                 Login
               </button>
             </div>
-          </div>
+        </div>
       </section>
       <ToastContainer />
     </>

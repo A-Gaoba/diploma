@@ -28,7 +28,7 @@ export const teachersData: TeacherPageProps[] = [
     id: 1,
     firstName: "John",
     lastName: "Doe",
-    image: "https://source.unsplash.com/64x64/?student=alice",
+    image: "==alice",
     subject: "Mathematics",
     timeOfClass: "9:00 AM - 11:00 AM",
     gender: "Male",

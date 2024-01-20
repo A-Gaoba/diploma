@@ -110,22 +110,15 @@ const TeacherProfile: React.FC<TeacherProfileProps> = () => {
 
           {/* Add more sections for other details such as awards, achievements, etc. */}
           <section className="mb-8 bg-white p-6 rounded-md shadow-md">
-            <h2 className="md:text-xl font-semibold mb-2">Awards</h2>
-            {/* Uncomment and modify the following line as needed */}
-            {/* <PersonalInfo label="Awards" value={teacher.awards.join(', ')} /> */}
+            <PersonalInfo label="Awards" value={teacher.awards.join(', ')} />
           </section>
 
           <section className="mb-8 bg-white p-6 rounded-md shadow-md">
-            <h2 className="md:text-xl font-semibold mb-2">Achievements</h2>
-            {/* Uncomment and modify the following line as needed */}
-            {/* <PersonalInfo label="Achievements" value={teacher.achievements} /> */}
+            <PersonalInfo label="Achievements" value={teacher.achievements} />
           </section>
 
-          {/* Add more sections for other details such as class schedule, office location, etc. */}
           <section className="mb-8 bg-white p-6 rounded-md shadow-md">
-            <h2 className="md:text-xl font-semibold mb-2">Class Schedule</h2>
-            {/* Uncomment and modify the following line as needed */}
-            {/* <PersonalInfo label="Class Schedule" value={teacher.classSchedule} /> */}
+            <PersonalInfo label="Class Schedule" value={teacher.classSchedule} />
           </section>
 
           <section className="mb-8 bg-white p-6 rounded-md shadow-md">
@@ -147,15 +140,12 @@ const TeacherProfile: React.FC<TeacherProfileProps> = () => {
 
           {/* Add more sections for other details such as preferred communication, bio, etc. */}
           <section className="mb-8 bg-white p-6 rounded-md shadow-md">
-            <h2 className=" font-semibold mb-2">Preferred Communication</h2>
-            {/* Uncomment and modify the following line as needed */}
-            {/* <PersonalInfo label="Preferred Communication" value={teacher.preferredCommunication} /> */}
+            <PersonalInfo label="Preferred Communication" value={teacher.preferredCommunication} />
+            <p>{teacher.email}</p>
           </section>
 
           <section className="mb-8 bg-white p-6 rounded-md shadow-md">
-            <h2 className=" font-semibold mb-2">Bio</h2>
-            {/* Uncomment and modify the following line as needed */}
-            {/* <PersonalInfo label="Bio" value={teacher.bio} /> */}
+            <PersonalInfo label="Bio" value={teacher.bio} />
           </section>
         </aside>
       </div>
